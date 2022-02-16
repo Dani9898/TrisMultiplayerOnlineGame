@@ -15,30 +15,33 @@
 
     <div id="container">
 
-        
 
-        
+
+        <a href="http://127.0.0.1:5500/index.html?stanza=nome-stanza&player=x">player 2</a>
+
+        <!-- <i class="fa-solid fa-xmark"></i> -->
+        <!-- <i class="fa-solid fa-o"></i> -->
         <div class="row">
 
-            <div class="square s1-1"><i class="fa-solid fa-xmark"></i></div>
-            <div class="square s1-2"><i class="fa-solid fa-o"></i></div>
-            <div class="square s1-3"><i class="fa-solid fa-o"></i></div>
+            <div class="square s1-1" @click="clicked('s1-1')"></div>
+            <div class="square s1-2" @click="clicked('s1-2')"></div>
+            <div class="square s1-3" @click="clicked('s1-3')"></div>
 
         </div>
 
         <div class="row">
 
-            <div class="square s2-1"><i class="fa-solid fa-xmark"></i></div>
-            <div class="square s2-2"><i class="fa-solid fa-xmark"></i></div>
-            <div class="square s2-3"><i class="fa-solid fa-o"></i></div>
+            <div class="square s2-1" @click="clicked('s2-1')"></div>
+            <div class="square s2-2" @click="clicked('s2-2')"></div>
+            <div class="square s2-3" @click="clicked('s2-3')"></div>
 
         </div>
 
         <div class="row">
 
-            <div class="square s3-1"><i class="fa-solid fa-o"></i></div>
-            <div class="square s3-2"><i class="fa-solid fa-xmark"></i></div>
-            <div class="square s3-3"><i class="fa-solid fa-o"></i></div>
+            <div class="square s3-1" @click="clicked('s3-1')"></div>
+            <div class="square s3-2" @click="clicked('s3-2')"></div>
+            <div class="square s3-3" @click="clicked('s3-3')"></div>
 
         </div>
 

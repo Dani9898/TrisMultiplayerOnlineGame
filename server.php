@@ -31,14 +31,14 @@ if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])
   $player    = $_GET['player'];
   $json->$position = $player;
 
-  $json = json_encode($json);
+  $json = json_encode($json, JSON_PRETTY_PRINT | JSON_UNISCAPED_ENCODE);
   file_put_contents($file, $json); 
-  echo json_encode($json, JSON_PRETTY_PRINT);
+  echo $json;
   die;
 }
 
 if (isset($_GET['stanza'])) {
-    echo json_encode($data, JSON_PRETTY_PRINT); die;
+    echo json_encode($json, JSON_PRETTY_PRINT | JSON_UNISCAPED_ENCODE); die;
 }
 
 ?>

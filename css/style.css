@@ -1,5 +1,5 @@
 :root {
-    --border: 1px solid black;
+    --border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -9,22 +9,65 @@
 }
 
 
+#container {
 
+    width: 450px;
+    height: 450px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
 
 
 .row {
     
     display: flex;
+    
 
 }
 
 .square {
-
-    background-color:red;
     width: 150px;
     height: 150px;
-
-    border: var(--border);
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.s1-1,
+.s2-1,
+.s1-2,
+.s2-2 {
+    border-bottom: var(--border);
+    border-right: var(--border);
+}
+
+
+.s1-3,
+.s2-3 {
+    border-bottom: var(--border);
+}
+
+.s3-1,
+.s3-2 {
+    border-right: var(--border);
+}
+
+
+i {
+    font-size: 40px;
+}
+
+.fa-xmark {
+
+    color: red;
+}
+
+.fa-o {
+
+    color: blue;
+}

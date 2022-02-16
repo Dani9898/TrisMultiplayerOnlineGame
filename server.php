@@ -13,6 +13,7 @@ $data = (Object)[
   's3_1' => '',
   's3_2' => '',
   's3_3' => '',
+  'lastUser' => '',
 ];
 
 if (!is_file($file)) {
@@ -29,6 +30,7 @@ if (!is_file($file)) {
 if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])) {
   $position  = $_GET['position'];
   $player    = $_GET['player'];
+  $json->lastUser = $player;
   $json->$position = $player;
 
   $json = json_encode($json, JSON_PRETTY_PRINT | JSON_UNISCAPED_ENCODE);

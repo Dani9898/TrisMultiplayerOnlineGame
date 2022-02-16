@@ -5,6 +5,7 @@ var app = new Vue(
         el: "#container",
         data: {
             storeClick: [],
+            click: false,
             dbData: {
                     's1_1': '',
                     's1_2': '',
@@ -32,30 +33,37 @@ var app = new Vue(
             this.stanza = urlParams.get('stanza');
             // valore player
             this.player = urlParams.get('player');
-
             setInterval(this.getData, 1000);
         },
 
         methods: {
             async clicked(coordinata) {
-                console.log('clickato' + coordinata);
-                if (!this.storeClick.includes(coordinata)) {
+                // console.log('clickato' + coordinata);
+                if (this.dbData.lastUser == undefined) {
+                    this.click = false
+                }
+                if (!this.storeClick.includes(coordinata) && this.click === false) {
                     this.storeClick.push(coordinata)
                     const res = await axios.get(`http://localhost:81/server.php?stanza=${this.stanza}&player=${this.player}&position=${coordinata}`)
                     .catch(e => console.error(e));
                     this.dbData = res.data;
-                    console.log(this.dbData);
+                    console.log('user click',this.dbData.lastUser);
+                    this.click = true;
+                    // console.log(this.dbData);
                 }
                 console.log(this.storeClick);
             },
 
             getData(){
                 axios.get(`http://localhost:81/server.php?stanza=${this.stanza}`)
-                    .then(r => this.dbData = r.data)
+                    .then(r => {
+                        this.dbData = r.data;
+                        console.log('last user',this.dbData.lastUser);
+                        this.click = this.dbData.lastUser == this.player;
+                        console.log('click',this.click);
+                    })
                     .catch(e => console.error(e));
-                    console.log('ciao');
-            }
-
+            },
         },
     }
 )

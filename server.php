@@ -1,32 +1,44 @@
 <?php 
   
-$file=$_GET ['stanza'] . '.json';
-
-if(is_file($file)) {
-    echo ("$file is a regular file");
-  } else {
-    echo ("$file is not a regular file");
-  }
+$file  = $_GET ['stanza'];
+$file .= '.json';
 
 $data = (Object)[
-    's1_1' => '',
-    's1_2' => '',
-    's1_3' => '',
-    's2_1' => '',
-    's2_2' => '',
-    's2_3' => '',
-    's3_1' => '',
-    's3_2' => '',
-    's3_3' => '',
+  's1_1' => '',
+  's1_2' => '',
+  's1_3' => '',
+  's2_1' => '',
+  's2_2' => '',
+  's2_3' => '',
+  's3_1' => '',
+  's3_2' => '',
+  's3_3' => '',
 ];
 
-// var_dump($data);
-$json = json_encode($data);
-$bytes = file_put_contents($file, $json); 
+if (!is_file($file)) {
+    $json = json_encode($data, JSON_PRETTY_PRINT);
+    file_put_contents($file, $json);
+    $json = json_decode($json);
+} else {
+    $json = file_get_contents($file);
+    $json = json_decode($json);
+}
 
-$content = file_get_contents($file);
-$content = json_decode($content);
+// $_GET['player'] può essere o X o O
 
-var_dump($content->s1_1);
-  
+if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])) {
+  $position  = $_GET['position'];
+  $player    = $_GET['player'];
+  $json->$position = $player;
+
+  $json = json_encode($json);
+  file_put_contents($file, $json); 
+  echo json_encode($json, JSON_PRETTY_PRINT);
+  die;
+}
+
+if (isset($_GET['stanza'])) {
+    echo json_encode($data, JSON_PRETTY_PRINT); die;
+}
+
 ?>

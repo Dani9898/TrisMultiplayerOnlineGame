@@ -17,40 +17,61 @@
 
 
 
-        <a href="http://127.0.0.1:5500/index.html?stanza=nome-stanza&player=x">player 2</a>
+        <a target="_blank" href="index.html?stanza=nome-stanza&player=x">player 2</a>
 
         <!-- <i class="fa-solid fa-xmark"></i> -->
         <!-- <i class="fa-solid fa-o"></i> -->
+        <!-- row 1 -->
         <div class="row">
 
-            <div class="square s1-1" @click="clicked('s1-1')"></div>
-            <div class="square s1-2" @click="clicked('s1-2')"></div>
-            <div class="square s1-3" @click="clicked('s1-3')"></div>
+            <div class="square s1-1" @click="clicked('s1_1')">
+                {{ dbData.s1_1 }}
+            </div>
+            <div class="square s1-2" @click="clicked('s1_2')">
+                {{ dbData.s1_2 }}
+            </div>
+            <div class="square s1-3" @click="clicked('s1_3')">
+                {{ dbData.s1_3 }}
+            </div>
 
         </div>
 
+        <!-- row 2-->
         <div class="row">
 
-            <div class="square s2-1" @click="clicked('s2-1')"></div>
-            <div class="square s2-2" @click="clicked('s2-2')"></div>
-            <div class="square s2-3" @click="clicked('s2-3')"></div>
+            <div class="square s2-1" @click="clicked('s2_1')">
+                {{ dbData.s2_1 }}
+            </div>            
+            <div class="square s2-2" @click="clicked('s2_2')">
+                {{ dbData.s2_2 }}
+            </div>
+            <div class="square s2-3" @click="clicked('s2_3')">
+                {{ dbData.s2_3 }}
+            </div>
 
         </div>
 
+        <!-- row 3-->
         <div class="row">
 
-            <div class="square s3-1" @click="clicked('s3-1')"></div>
-            <div class="square s3-2" @click="clicked('s3-2')"></div>
-            <div class="square s3-3" @click="clicked('s3-3')"></div>
+            <div class="square s3-1" @click="clicked('s3_1')">
+                {{ dbData.s3_1 }}
+            </div>
+            <div class="square s3-2" @click="clicked('s3_2')">
+                {{ dbData.s3_2 }}
+            </div>
+            <div class="square s3-3" @click="clicked('s3_3')">
+                {{ dbData.s3_3 }}
+            </div>
 
         </div>
 
 
     </div>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="js/script.js"></script> -->
+    <script src="js/script.js"></script>
 
 
 </body>

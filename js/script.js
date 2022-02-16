@@ -19,7 +19,7 @@ var app = new Vue(
                 },
             player:'',
             stanza:'',
-            display: false,
+            winner: false,
             icon: 'fa-solid',
         },
 
@@ -42,11 +42,16 @@ var app = new Vue(
                 if (this.dbData.lastUser == undefined) {
                     this.click = false
                 }
-                if (!this.storeClick.includes(coordinata) && this.click === false) {
+                if (!this.storeClick.includes(coordinata) && this.click === false && this.winner == false) {
                     this.storeClick.push(coordinata)
-                    const res = await axios.get(`http://localhost:81/server.php?stanza=${this.stanza}&player=${this.player}&position=${coordinata}`)
+                    const res = await axios.get(`server.php?stanza=${this.stanza}&player=${this.player}&position=${coordinata}`)
                     .catch(e => console.error(e));
                     this.dbData = res.data;
+                    if (res.data.winner) {
+                        alert('partita finita ' + res.data.lastUser);
+                        this.click = true;
+                        this.winner = true;
+                    }
                     console.log('user click',this.dbData.lastUser);
                     this.click = true;
                     // console.log(this.dbData);
@@ -55,7 +60,7 @@ var app = new Vue(
             },
 
             getData(){
-                axios.get(`http://localhost:81/server.php?stanza=${this.stanza}`)
+                axios.get(`server.php?stanza=${this.stanza}`)
                     .then(r => {
                         this.dbData = r.data;
                         console.log('last user',this.dbData.lastUser);

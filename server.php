@@ -33,14 +33,43 @@ if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])
   $json->lastUser = $player;
   $json->$position = $player;
 
-  $json = json_encode($json, JSON_PRETTY_PRINT | JSON_UNISCAPED_ENCODE);
+  $json->winner = asWinner($json, $player);
+  $json = json_encode($json, JSON_PRETTY_PRINT);
   file_put_contents($file, $json); 
   echo $json;
   die;
 }
 
 if (isset($_GET['stanza'])) {
-    echo json_encode($json, JSON_PRETTY_PRINT | JSON_UNISCAPED_ENCODE); die;
+    echo json_encode($json, JSON_PRETTY_PRINT); die;
+}
+
+
+function asWinner($json, $player) {
+    if ( // Horizontal
+        ($json->s1_1 == $player && $json->s1_2 == $player && $json->s1_3 == $player) ||
+        ($json->s2_1 == $player && $json->s2_2 == $player && $json->s2_3 == $player) ||
+        ($json->s3_1 == $player && $json->s3_2 == $player && $json->s3_3 == $player)
+        ) {
+        return true;
+    }
+
+    if ( // Vertical
+      ($json->s1_1 == $player && $json->s2_1 == $player && $json->s3_1 == $player) ||
+      ($json->s1_2 == $player && $json->s2_2 == $player && $json->s3_2 == $player) ||
+      ($json->s1_3 == $player && $json->s2_3 == $player && $json->s3_3 == $player)
+      ) {
+      return true;
+  }
+
+    if ( // Diagonali
+      ($json->s1_1 == $player && $json->s2_2 == $player && $json->s3_3 == $player) ||
+      ($json->s1_3 == $player && $json->s2_2 == $player && $json->s3_1 == $player)
+      ) {
+      return true;
+  }
+
+    return false;
 }
 
 ?>

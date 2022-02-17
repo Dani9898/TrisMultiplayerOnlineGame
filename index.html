@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tris</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -14,58 +15,70 @@
     
 
     <div id="container">
-
-
-
-        <a target="_blank" href="index.html?stanza=nome-stanza&player=x">player 2</a>
-
-        <!-- <i class="fa-solid fa-xmark"></i> -->
-        <!-- <i class="fa-solid fa-o"></i> -->
-        <!-- row 1 -->
-        <div class="row">
-
-            <div class="square s1-1" @click="clicked('s1_1')">
-                {{ dbData.s1_1 }}
-            </div>
-            <div class="square s1-2" @click="clicked('s1_2')">
-                {{ dbData.s1_2 }}
-            </div>
-            <div class="square s1-3" @click="clicked('s1_3')">
-                {{ dbData.s1_3 }}
-            </div>
-
+        <div id="cont-img">
+            <img src="/asset/tris-logo.png" alt="">
         </div>
-
-        <!-- row 2-->
-        <div class="row">
-
-            <div class="square s2-1" @click="clicked('s2_1')">
-                {{ dbData.s2_1 }}
-            </div>            
-            <div class="square s2-2" @click="clicked('s2_2')">
-                {{ dbData.s2_2 }}
-            </div>
-            <div class="square s2-3" @click="clicked('s2_3')">
-                {{ dbData.s2_3 }}
-            </div>
-
+        <!-- form per la stanza -->
+        <div id="cont-form">
+            <label for="stanza">Stanza</label><br>
+            <input type="text" v-model="stanzaInput" value=" "><br>
+            <label for="player">Player</label><br>
+            <input type="text" v-model="playerInput" value=" "><br>
+            <br>
+            <br>
+            <a class="btn btn-primary" target="_blank" :href="`index.html?stanza=${stanzaInput}&player=${playerInput}`">create</a>
         </div>
+        <!-- /form per la stanza -->
 
-        <!-- row 3-->
-        <div class="row">
+        <!-- game -->
+        <div v-if="stanza" >
+            <!-- row 1 -->
+            <div class="row">
 
-            <div class="square s3-1" @click="clicked('s3_1')">
-                {{ dbData.s3_1 }}
-            </div>
-            <div class="square s3-2" @click="clicked('s3_2')">
-                {{ dbData.s3_2 }}
-            </div>
-            <div class="square s3-3" @click="clicked('s3_3')">
-                {{ dbData.s3_3 }}
+                <div class="square s1-1" @click="clicked('s1_1')">
+                    {{ dbData.s1_1 }}
+                </div>
+                <div class="square s1-2" @click="clicked('s1_2')">
+                    {{ dbData.s1_2 }}
+                </div>
+                <div class="square s1-3" @click="clicked('s1_3')">
+                    {{ dbData.s1_3 }}
+                </div>
+
             </div>
 
+            <!-- row 2-->
+            <div class="row">
+
+                <div class="square s2-1" @click="clicked('s2_1')">
+                    {{ dbData.s2_1 }}
+                </div>            
+                <div class="square s2-2" @click="clicked('s2_2')">
+                    {{ dbData.s2_2 }}
+                </div>
+                <div class="square s2-3" @click="clicked('s2_3')">
+                    {{ dbData.s2_3 }}
+                </div>
+
+            </div>
+
+            <!-- row 3-->
+            <div class="row">
+
+                <div class="square s3-1" @click="clicked('s3_1')">
+                    {{ dbData.s3_1 }}
+                </div>
+                <div class="square s3-2" @click="clicked('s3_2')">
+                    {{ dbData.s3_2 }}
+                </div>
+                <div class="square s3-3" @click="clicked('s3_3')">
+                    {{ dbData.s3_3 }}
+                </div>
+
+            </div>
         </div>
-
+        <!-- /game -->
+            
 
     </div>
 

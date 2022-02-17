@@ -8,9 +8,17 @@
     box-sizing: border-box;
 }
 
+#cont-img {
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* form */
+#cont-form {
+    text-align: center;
+}
+/* form */
 
 #container {
-
     width: 450px;
     height: 450px;
 
@@ -21,7 +29,6 @@
     transform: translate(-50%, -50%);
 
 }
-
 
 .row {
     

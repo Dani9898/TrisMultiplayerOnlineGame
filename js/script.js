@@ -19,12 +19,15 @@ var app = new Vue(
                 },
             player:'',
             stanza:'',
+            playerInput:'',
+            stanzaInput:'',
             winner: false,
             icon: 'fa-solid',
         },
 
         mounted(){
 
+            this.toEmptyInput();
             // valore url
             const queryString = window.location.search;
 
@@ -69,6 +72,12 @@ var app = new Vue(
                     })
                     .catch(e => console.error(e));
             },
+
+            toEmptyInput(){
+                this.stanzaInput = ' ';
+                this.playerInput = ' ';
+
+            }
         },
     }
 )

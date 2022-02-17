@@ -1,7 +1,9 @@
 <?php 
-  
+
+$folder = 'json/';
 $file  = $_GET ['stanza'];
-$file .= '.json';
+$file = $folder .= $file.= '.json';
+
 
 $data = (Object)[
   's1_1' => '',

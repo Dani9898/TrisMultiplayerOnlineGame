@@ -37,10 +37,7 @@ var app = new Vue(
             nomeInput: '',
             winner: false,
             ceilClick: 0,
-            ceilW1: '',
-            ceilW2: '',
-            ceilW3: '',
-            
+            ceilW: []
         },
 
         mounted(){
@@ -75,9 +72,7 @@ var app = new Vue(
                         alert('partita finita ' + res.data.lastUser);
                         this.click = true;
                         this.winner = true;
-                        this.ceilW1 = res.data.winnerData.ceilWin[0];
-                        this.ceilW2 = res.data.winnerData.ceilWin[1];
-                        this.ceilW3 = res.data.winnerData.ceilWin[2];
+                        this.ceilW = res.data.winnerData.ceilWin;
 
                     }
 

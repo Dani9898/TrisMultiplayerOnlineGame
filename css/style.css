@@ -45,16 +45,16 @@
     align-items: center;
 }
 
-.s1-1,
+.s1_1,
 .s2-1,
-.s1-2,
+.s1_2,
 .s2-2 {
     border-bottom: var(--border);
     border-right: var(--border);
 }
 
 
-.s1-3,
+.s1_3,
 .s2-3 {
     border-bottom: var(--border);
 }
@@ -77,4 +77,8 @@ i {
 .fa-o {
 
     color: blue;
+}
+
+.active{
+    background-color: rebeccapurple;
 }

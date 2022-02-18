@@ -37,13 +37,13 @@
             <!-- row 1 -->
             <div class="row">
 
-                <div class="square s1-1" :class="" @click="clicked('s1_1')">
+                <div class="square s1_1" :class="ceilW.includes('s1_1') ? 'active' :  ''" @click="clicked('s1_1')">
                     {{ dbData.s1_1 }}
                 </div>
-                <div class="square s1-2" @click="clicked('s1_2')">
+                <div class="square s1_2" :class="ceilW.includes('s1_2') ? 'active' :  ''" @click="clicked('s1_2')">
                     {{ dbData.s1_2 }}
                 </div>
-                <div class="square s1-3" @click="clicked('s1_3')">
+                <div class="square s1_3" :class="ceilW.includes('s1_3') ? 'active' :  ''" @click="clicked('s1_3')">
                     {{ dbData.s1_3 }}
                 </div>
 

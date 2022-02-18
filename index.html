@@ -16,10 +16,10 @@
 
     <div id="container">
         <div id="cont-img">
-            <img src="/asset/tris-logo.png" alt="">
+            <img src="asset/tris-logo.png" alt="">
         </div>
         <!-- form per la stanza -->
-        <div id="cont-form">
+        <div v-if="!stanza" id="cont-form">
             <label for="stanza">Stanza</label><br>
             <input type="text" v-model="stanzaInput" value=" "><br>
             <label for="player">Player</label><br>
@@ -59,7 +59,7 @@
                 <div class="square s2-3" @click="clicked('s2_3')">
                     {{ dbData.s2_3 }}
                 </div>
-
+            
             </div>
 
             <!-- row 3-->
@@ -75,6 +75,10 @@
                     {{ dbData.s3_3 }}
                 </div>
 
+            </div>
+
+            <div class="w-100">
+                <button class="d-block btn btn-primary m-auto mt-2" @click="reset">RESET</button>
             </div>
         </div>
         <!-- /game -->

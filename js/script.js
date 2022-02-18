@@ -22,7 +22,8 @@ var app = new Vue(
             playerInput:'',
             stanzaInput:'',
             winner: false,
-            icon: 'fa-solid',
+            ceilClick: 0
+            
         },
 
         mounted(){
@@ -49,34 +50,57 @@ var app = new Vue(
                     this.storeClick.push(coordinata)
                     const res = await axios.get(`server.php?stanza=${this.stanza}&player=${this.player}&position=${coordinata}`)
                     .catch(e => console.error(e));
+                    
+                    this.faituttotu();
                     this.dbData = res.data;
+                    this.ceilClick++;
+                    // console.log(this.ceilClick);
+                    // console.log('storeclick: ',this.storeClick.length);
+
                     if (res.data.winner) {
                         alert('partita finita ' + res.data.lastUser);
                         this.click = true;
                         this.winner = true;
                     }
-                    console.log('user click',this.dbData.lastUser);
+
+                    if (this.storeClick.length == 8 && !this.winner) {
+                        alert('Pareggio'); 
+                        this.reset();
+                    }
+
+                    // console.log('user click',this.dbData.lastUser);
                     this.click = true;
                     // console.log(this.dbData);
                 }
-                console.log(this.storeClick);
+                // console.log(this.storeClick);
             },
 
             getData(){
                 axios.get(`server.php?stanza=${this.stanza}`)
                     .then(r => {
                         this.dbData = r.data;
-                        console.log('last user',this.dbData.lastUser);
+                        // console.log('last user',this.dbData.lastUser);
                         this.click = this.dbData.lastUser == this.player;
-                        console.log('click',this.click);
+                        // console.log('click',this.click);
                     })
                     .catch(e => console.error(e));
             },
 
             toEmptyInput(){
-                this.stanzaInput = ' ';
-                this.playerInput = ' ';
+                this.stanzaInput = '';
+                this.playerInput = '';
 
+            },
+
+            reset() {
+                this.dbData = {};
+                axios.get(`server.php?stanza=${this.stanza}&reset`)
+                    .then(r => {  })
+                    .catch(e => console.error(e));
+            },
+
+            faituttotu() {
+                console.log('lunghezza: ',Object.keys(this.dbData).length);
             }
         },
     }

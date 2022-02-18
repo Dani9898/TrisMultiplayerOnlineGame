@@ -42,6 +42,12 @@ if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])
   die;
 }
 
+if (isset($_GET['stanza']) && isset($_GET['reset'])) {
+  $json = json_encode($data, JSON_PRETTY_PRINT);
+  file_put_contents($file, $json);
+  $json = json_decode($json); die;
+}
+
 if (isset($_GET['stanza'])) {
     echo json_encode($json, JSON_PRETTY_PRINT); die;
 }

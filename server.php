@@ -16,6 +16,7 @@ $data = (Object)[
   's3_2' => '',
   's3_3' => '',
   'lastUser' => '',
+  'nclick' => 0
 ];
 
 if (!is_file($file)) {
@@ -33,8 +34,9 @@ if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])
   $position  = $_GET['position'];
   $player    = $_GET['player'];
   $json->lastUser = $player;
+  $json->nclick++;
   $json->$position = $player;
-
+  $json->reset = false;
   $json->winner = asWinner($json, $player);
   $json = json_encode($json, JSON_PRETTY_PRINT);
   file_put_contents($file, $json); 
@@ -43,6 +45,7 @@ if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])
 }
 
 if (isset($_GET['stanza']) && isset($_GET['reset'])) {
+  $data->reset = true;  
   $json = json_encode($data, JSON_PRETTY_PRINT);
   file_put_contents($file, $json);
   $json = json_decode($json); die;

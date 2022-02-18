@@ -1,5 +1,28 @@
 
 
+/*
+1. Una volta che siamo entrati, far scomparire il form. 		--DONE--
+
+2. Il reset								--DONE--
+
+3. Gestire il pareggio							
+
+4. Dovremmo gestire le celle di vittoria, quindi illuminarle.
+
+5. Frasi descrittive
+
+6. Che i tasti sarebbero "crea nuova stanza" o "unisciti"
+Crea stanza -> 
+Unisciti ->
+
+7. Nella stanza chiedere anche il nome (Slugify)
+
+
+BONUS (m.2)
+
+- Scegliere simbolo con la quale giocare
+*/
+
 var app = new Vue(
     {
         el: "#container",
@@ -21,6 +44,7 @@ var app = new Vue(
             stanza:'',
             playerInput:'',
             stanzaInput:'',
+            nomeInput: '',
             winner: false,
             ceilClick: 0
             
@@ -50,8 +74,7 @@ var app = new Vue(
                     this.storeClick.push(coordinata)
                     const res = await axios.get(`server.php?stanza=${this.stanza}&player=${this.player}&position=${coordinata}`)
                     .catch(e => console.error(e));
-                    
-                    this.faituttotu();
+
                     this.dbData = res.data;
                     this.ceilClick++;
                     // console.log(this.ceilClick);
@@ -63,7 +86,9 @@ var app = new Vue(
                         this.winner = true;
                     }
 
-                    if (this.storeClick.length == 8 && !this.winner) {
+                    console.log(this.dbData.nclick);
+
+                    if (this.dbData.nclick == 9 && !this.winner) {
                         alert('Pareggio'); 
                         this.reset();
                     }
@@ -81,6 +106,11 @@ var app = new Vue(
                         this.dbData = r.data;
                         // console.log('last user',this.dbData.lastUser);
                         this.click = this.dbData.lastUser == this.player;
+
+                        if (this.dbData.reset) {
+                            this.dbData = {};
+                            this.storeClick = [];
+                        }
                         // console.log('click',this.click);
                     })
                     .catch(e => console.error(e));
@@ -94,14 +124,31 @@ var app = new Vue(
 
             reset() {
                 this.dbData = {};
+                this.storeClick = [];
+
                 axios.get(`server.php?stanza=${this.stanza}&reset`)
-                    .then(r => {  })
+                    .then(r => {})
                     .catch(e => console.error(e));
             },
 
-            faituttotu() {
-                console.log('lunghezza: ',Object.keys(this.dbData).length);
+            slug(str) {
+                str = str.replace(/^\s+|\s+$/g, ''); // trim
+                str = str.toLowerCase();
+              
+                // remove accents, swap ñ for n, etc
+                var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+                var to   = "aaaaeeeeiiiioooouuuunc------";
+                for (var i=0, l=from.length ; i<l ; i++) {
+                    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+                }
+            
+                str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+                    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+                    .replace(/-+/g, '-'); // collapse dashes
+            
+                return str;
             }
+
         },
     }
 )

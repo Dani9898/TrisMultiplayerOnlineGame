@@ -22,11 +22,13 @@
         <div v-if="!stanza" id="cont-form">
             <label for="stanza">Stanza</label><br>
             <input type="text" v-model="stanzaInput" value=" "><br>
+            <label for="stanza">Nome</label><br>
+            <input type="text" v-model="nomeInput" value=" "><br>
             <label for="player">Player</label><br>
             <input type="text" v-model="playerInput" value=" "><br>
             <br>
             <br>
-            <a class="btn btn-primary" target="_blank" :href="`index.html?stanza=${stanzaInput}&player=${playerInput}`">create</a>
+            <a class="btn btn-primary" :href="`index.html?stanza=${stanzaInput}&player=${playerInput}`">create</a>
         </div>
         <!-- /form per la stanza -->
 

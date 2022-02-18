@@ -1,6 +1,6 @@
 <?php 
 
-$folder = 'json/';
+$folder = 'room/';
 $file  = $_GET ['stanza'];
 $file = $folder .= $file.= '.json';
 

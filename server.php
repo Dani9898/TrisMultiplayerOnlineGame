@@ -16,7 +16,8 @@ $data = (Object)[
   's3_2' => '',
   's3_3' => '',
   'lastUser' => '',
-  'nclick' => 0
+  'nclick' => 0,
+  'winnerData' => (Object)[]
 ];
 
 if (!is_file($file)) {
@@ -37,7 +38,7 @@ if (isset($_GET['stanza']) && isset($_GET['position']) && isset($_GET['player'])
   $json->nclick++;
   $json->$position = $player;
   $json->reset = false;
-  $json->winner = asWinner($json, $player);
+  $json->winnerData = asWinner($json, $player);
   $json = json_encode($json, JSON_PRETTY_PRINT);
   file_put_contents($file, $json); 
   echo $json;
@@ -62,7 +63,11 @@ function asWinner($json, $player) {
         ($json->s2_1 == $player && $json->s2_2 == $player && $json->s2_3 == $player) ||
         ($json->s3_1 == $player && $json->s3_2 == $player && $json->s3_3 == $player)
         ) {
-        return true;
+        // return true;
+        return (Object)[
+          'winner' => true,
+          'ceilWin' => ['s1_1','s1_2','s1_3']
+        ];
     }
 
     if ( // Vertical

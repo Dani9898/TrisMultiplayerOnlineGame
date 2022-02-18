@@ -28,7 +28,7 @@
             <input type="text" v-model="playerInput" value=" "><br>
             <br>
             <br>
-            <a class="btn btn-primary" :href="`index.html?stanza=${stanzaInput}&player=${playerInput}`">create</a>
+            <a class="btn btn-primary" :href="`index.html?player=${playerInput}&stanza=${stanzaInput}`">create</a>
         </div>
         <!-- /form per la stanza -->
 
@@ -37,7 +37,7 @@
             <!-- row 1 -->
             <div class="row">
 
-                <div class="square s1-1" @click="clicked('s1_1')">
+                <div class="square s1-1" :class="" @click="clicked('s1_1')">
                     {{ dbData.s1_1 }}
                 </div>
                 <div class="square s1-2" @click="clicked('s1_2')">

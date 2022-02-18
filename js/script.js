@@ -5,7 +5,7 @@
 
 2. Il reset								--DONE--
 
-3. Gestire il pareggio							
+3. Gestire il pareggio				--DONE-- 		
 
 4. Dovremmo gestire le celle di vittoria, quindi illuminarle.
 
@@ -29,24 +29,17 @@ var app = new Vue(
         data: {
             storeClick: [],
             click: false,
-            dbData: {
-                    's1_1': '',
-                    's1_2': '',
-                    's1_3': '',
-                    's2_1': '',
-                    's2_2': '',
-                    's2_3': '',
-                    's3_1': '',
-                    's3_2': '',
-                    's3_3': ''
-                },
+            dbData: {},
             player:'',
             stanza:'',
             playerInput:'',
             stanzaInput:'',
             nomeInput: '',
             winner: false,
-            ceilClick: 0
+            ceilClick: 0,
+            ceilW1: '',
+            ceilW2: '',
+            ceilW3: '',
             
         },
 
@@ -77,17 +70,19 @@ var app = new Vue(
 
                     this.dbData = res.data;
                     this.ceilClick++;
-                    // console.log(this.ceilClick);
-                    // console.log('storeclick: ',this.storeClick.length);
 
-                    if (res.data.winner) {
+                    if (res.data.winnerData) {
                         alert('partita finita ' + res.data.lastUser);
                         this.click = true;
                         this.winner = true;
+                        this.ceilW1 = res.data.winnerData.ceilWin[0];
+                        this.ceilW2 = res.data.winnerData.ceilWin[1];
+                        this.ceilW3 = res.data.winnerData.ceilWin[2];
+
                     }
 
-                    console.log(this.dbData.nclick);
-
+                    
+                    // controllo pareggio
                     if (this.dbData.nclick == 9 && !this.winner) {
                         alert('Pareggio'); 
                         this.reset();

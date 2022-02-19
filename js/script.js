@@ -27,17 +27,27 @@ var app = new Vue(
     {
         el: "#container",
         data: {
+            // dati sulla partita
             storeClick: [],
-            click: false,
             dbData: {},
+
+            // gestione click
+            click: false,
+
+            // dati url
             player:'',
             stanza:'',
+
+            // gestione input
             playerInput:'',
             stanzaInput:'',
             nomeInput: '',
+
+            // gestisce il vincitore
             winner: false,
-            ceilClick: 0,
-            ceilW: []
+
+            // array dati sul vincitore
+            ceilW: [],
         },
 
         mounted(){
@@ -45,7 +55,7 @@ var app = new Vue(
             this.toEmptyInput();
             // valore url
             const queryString = window.location.search;
-
+            // salvo l'url
             const urlParams = new URLSearchParams(queryString);
             // valore stanza
             this.stanza = urlParams.get('stanza');
@@ -55,72 +65,96 @@ var app = new Vue(
         },
 
         methods: {
+            // funzione che gestisce il click (asincrona)
             async clicked(coordinata) {
-                // console.log('clickato' + coordinata);
+                
+                // controllo primo click
                 if (this.dbData.lastUser == undefined) {
                     this.click = false
                 }
-                if (!this.storeClick.includes(coordinata) && this.click === false && this.winner == false) {
-                    this.storeClick.push(coordinata)
-                    const res = await axios.get(`server.php?stanza=${this.stanza}&player=${this.player}&position=${coordinata}`)
-                    .catch(e => console.error(e));
 
-                    this.dbData = res.data;
-                    this.ceilClick++;
+                // controllo generico click
+                // se storeClick contiene la cella cliccata && click e' falso && winner e' falso
+                if (!this.storeClick.includes(coordinata) 
+                    && this.click === false 
+                    && this.winner == false) {
+                        
+                        // pusho la coordinata nello storeClick
+                        this.storeClick.push(coordinata)
+                        // chiamata axios 
+                        const res = await axios.get(`server.php?stanza=${this.stanza}&player=${this.player}&position=${coordinata}`)
+                        .catch(e => console.error(e));
+                        // salvo il risultato in dbData
+                        this.dbData = res.data;
+                        // valorizzo click con true (non posso cliccare)
+                        this.click = true;
 
+                        // controllo win
+                        // se winner data esiste
                     if (res.data.winnerData) {
+                        // creo un allert
                         alert('partita finita ' + res.data.lastUser);
+                        // click e winner diventano'true'
                         this.click = true;
                         this.winner = true;
+                        // valorizzo ceilW con l'array contente le posizioni delle celle vincenti
                         this.ceilW = res.data.winnerData.ceilWin;
 
                     }
 
                     
                     // controllo pareggio
+                    // se nClick(count dei click) = 9 e winner e' falso
                     if (this.dbData.nclick == 9 && !this.winner) {
                         alert('Pareggio'); 
                         this.reset();
                     }
-
-                    // console.log('user click',this.dbData.lastUser);
-                    this.click = true;
-                    // console.log(this.dbData);
+                    
                 }
-                // console.log(this.storeClick);
             },
 
+            // call axios che torna i dati dal db(coordinate, winner, last user)
             getData(){
+                console.log('winner', this.winner);
                 axios.get(`server.php?stanza=${this.stanza}`)
                     .then(r => {
+                        // salvo i dati
                         this.dbData = r.data;
-                        // console.log('last user',this.dbData.lastUser);
+                        // valorizzo click con false nel momento che lastuser non e' l'utente della pagina
                         this.click = this.dbData.lastUser == this.player;
 
+                        // controllo reset
                         if (this.dbData.reset) {
+                            // svuoto i dati della partita
                             this.dbData = {};
                             this.storeClick = [];
+                            
+                            // valorizzo winner per reset classi
+                            this.winner = false;
                         }
-                        // console.log('click',this.click);
                     })
                     .catch(e => console.error(e));
             },
 
+            // svuota gli input
             toEmptyInput(){
                 this.stanzaInput = '';
                 this.playerInput = '';
 
             },
 
+            // reset game
             reset() {
+                // svuoto i dati della partita
                 this.dbData = {};
                 this.storeClick = [];
-
+                // avviso il back-end che la partita e' finita
                 axios.get(`server.php?stanza=${this.stanza}&reset`)
                     .then(r => {})
                     .catch(e => console.error(e));
             },
 
+            // gestisce il nome utente
             slug(str) {
                 str = str.replace(/^\s+|\s+$/g, ''); // trim
                 str = str.toLowerCase();

@@ -22,8 +22,8 @@
         <div v-if="!stanza" id="cont-form">
             <label for="stanza">Stanza</label><br>
             <input type="text" v-model="stanzaInput" value=" "><br>
-            <label for="stanza">Nome</label><br>
-            <input type="text" v-model="nomeInput" value=" "><br>
+            <!-- <label for="stanza">Nome</label><br>
+            <input type="text" v-model="nomeInput" value=" "><br> -->
             <label for="player">Player</label><br>
             <input type="text" v-model="playerInput" value=" "><br>
             <br>
@@ -37,47 +37,94 @@
             <!-- row 1 -->
             <div class="row">
 
-                <div class="square s1_1" :class="ceilW.includes('s1_1') ? 'active' :  ''" @click="clicked('s1_1')">
+                <!-- cella -->
+                <div class="square s1_1" 
+                    :class="ceilW.includes('s1_1') && winner? 'active' :  ''" 
+                    @click="clicked('s1_1')">
                     {{ dbData.s1_1 }}
                 </div>
-                <div class="square s1_2" :class="ceilW.includes('s1_2') ? 'active' :  ''" @click="clicked('s1_2')">
+                <!-- /cella -->
+
+                <!-- cella -->
+                <div class="square s1_2" 
+                    :class="ceilW.includes('s1_2') && winner? 'active' :  ''" 
+                    @click="clicked('s1_2')">
                     {{ dbData.s1_2 }}
                 </div>
-                <div class="square s1_3" :class="ceilW.includes('s1_3') ? 'active' :  ''" @click="clicked('s1_3')">
+                <!-- /cella -->
+
+                <!-- cella -->
+                <div class="square s1_3" 
+                    :class="ceilW.includes('s1_3') && winner? 'active' :  ''" 
+                    @click="clicked('s1_3')">
                     {{ dbData.s1_3 }}
                 </div>
+                <!-- /cella -->
 
             </div>
+            <!-- /row 1 -->
 
             <!-- row 2-->
             <div class="row">
 
-                <div class="square s2-1" @click="clicked('s2_1')">
+                <!-- cella -->
+                <div class="square s2_1" 
+                    :class="ceilW.includes('s2_1') && winner? 'active' :  ''" 
+                    @click="clicked('s2_1')">
                     {{ dbData.s2_1 }}
-                </div>            
-                <div class="square s2-2" @click="clicked('s2_2')">
+                </div>    
+                <!-- /cella -->
+                
+                <!-- cella -->
+                <div class="square s2_2" 
+                    :class="ceilW.includes('s2_2') && winner? 'active' :  ''" 
+                    @click="clicked('s2_2')">
                     {{ dbData.s2_2 }}
                 </div>
-                <div class="square s2-3" @click="clicked('s2_3')">
+                <!-- /cella -->
+                
+                <!-- cella -->
+                <div class="square s2_3" 
+                    :class="ceilW.includes('s2_3') && winner? 'active' :  ''" 
+                    @click="clicked('s2_3')">
                     {{ dbData.s2_3 }}
                 </div>
-            
+                <!-- /cella -->
+
             </div>
+            <!-- /row 2-->
+
 
             <!-- row 3-->
             <div class="row">
 
-                <div class="square s3-1" @click="clicked('s3_1')">
+                <!-- cella -->
+                <div class="square s3_1" 
+                    :class="ceilW.includes('s3_1') && winner? 'active' :  ''" 
+                    @click="clicked('s3_1')">
                     {{ dbData.s3_1 }}
                 </div>
-                <div class="square s3-2" @click="clicked('s3_2')">
+                <!-- /cella -->
+
+                <!-- cella -->
+                <div class="square s3_2" 
+                    :class="ceilW.includes('s3_2') && winner? 'active' :  ''" 
+                    @click="clicked('s3_2')">
                     {{ dbData.s3_2 }}
                 </div>
-                <div class="square s3-3" @click="clicked('s3_3')">
+                <!-- /cella -->
+
+                <!-- cella -->
+                <div class="square s3_3" 
+                    :class="ceilW.includes('s3_3') && winner? 'active' :  ''" 
+                    @click="clicked('s3_3')">
                     {{ dbData.s3_3 }}
                 </div>
+                <!-- /cella -->
 
             </div>
+            <!-- /row 3-->
+
 
             <div class="w-100">
                 <button class="d-block btn btn-primary m-auto mt-2" @click="reset">RESET</button>

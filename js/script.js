@@ -148,6 +148,9 @@ var app = new Vue(
                 // svuoto i dati della partita
                 this.dbData = {};
                 this.storeClick = [];
+            
+                // valorizzo winner per reset classi
+                this.winner = false;
                 // avviso il back-end che la partita e' finita
                 axios.get(`server.php?stanza=${this.stanza}&reset`)
                     .then(r => {})

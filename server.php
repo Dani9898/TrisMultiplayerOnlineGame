@@ -63,7 +63,6 @@ if (isset($_GET['stanza'])
     file_put_contents($file, $json); 
     // ritorno al client il file json contentente i dati
     echo $json;
-    // Loris
     die;
 }
 
@@ -74,18 +73,13 @@ if (isset($_GET['stanza'])
     
     // valorizzo reset con true
     $data->reset = true;  
-    // valorizzo winner con false
-    // $data
     // codifico i dati
     $json = json_encode($data, JSON_PRETTY_PRINT);
     // sovrascrivo i nuovi dati sul file 
     file_put_contents($file, $json);
-    // decodifico il file json
-    $json = json_decode($json); 
-    // Loris
     die;
 }
-// loris
+
 if (isset($_GET['stanza'])) {
     echo json_encode($json, JSON_PRETTY_PRINT); die;
 }

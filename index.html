@@ -34,6 +34,16 @@
 
         <!-- game -->
         <div v-if="stanza" >
+
+            <!-- frasi descrittive -->
+            <h1 v-if="click" class="sentence-desc">
+                Aspetta il tuo turno
+            </h1>
+            <h1 v-if="!click" class="sentence-desc">
+                Tocca a te
+            </h1>
+            <!-- /frasi descrittive -->
+
             <!-- row 1 -->
             <div class="row">
 

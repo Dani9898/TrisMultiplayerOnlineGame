@@ -66,3 +66,9 @@
 .active{
     background-color: rgb(173, 173, 173);
 }
+
+/* frasi descrittive */
+.sentence-desc {
+    text-align: center;
+    margin: 35px 0 ;
+}

@@ -9,7 +9,7 @@
 
 4. Dovremmo gestire le celle di vittoria, quindi illuminarle. --DONE--
 
-5. Frasi descrittive
+5. Frasi descrittive --Done--
 
 6. Che i tasti sarebbero "crea nuova stanza" o "unisciti"
 Crea stanza -> 

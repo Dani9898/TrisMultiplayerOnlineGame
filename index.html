@@ -16,9 +16,12 @@
     
 
     <div id="container">
-        <a href="index.html" id="cont-img">
-            <img src="asset/tris-logo.png" alt="logo">
-        </a>
+        <div id="cont-img">
+            <a href="index.html">
+                <img src="asset/tris-logo.png" alt="logo">
+            </a>
+        </div>
+            
         <!-- form per la stanza -->
 
         <!-- create room -->
@@ -35,7 +38,6 @@
 
 
         <!-- join room -->
-        <br><br><br>
         <div v-if="!stanza" id="cont-form">
             <label for="stanza">Stanza</label><br>
             <input type="text" v-model="stanzaInput"><br>
@@ -46,106 +48,107 @@
         <!-- /form per la stanza -->
 
         <!-- game -->
-        <div v-if="stanza" >
+        <div v-if="stanza">
             <!-- frasi descrittive -->
             <h1 v-if="click" class="sentence-desc">
-                <span :class="player == 'x' ? 'colorX' : 'colorO'">{{player}}</span> Aspetta il tuo turno
+                <span :class="player == 'x' ? 'colorX' : 'colorO'">{{player}} </span> - Aspetta il tuo turno
             </h1>
             <h1 v-else class="sentence-desc">
-                <span :class="player == 'x' ? 'colorX' : 'colorO'">{{player}}</span> Tocca a te
+                <span :class="player == 'x' ? 'colorX' : 'colorO'">{{player}} </span> - Tocca a te
             </h1>
             <!-- /frasi descrittive -->
 
-            <!-- row 1 -->
-            <div class="row">
+            <div class="grill d-flex flex-column flex-nowrap">
+                <!-- row 1 -->
+                <div class="row">
 
-                <!-- cella -->
-                <h2 class="square s1_1" 
-                    :class="[winnerCombination.includes('s1_1') && winner ? 'active' :  '', dbData.s1_1 == 'x' ? 'colorX' : 'colorO']" 
-                    @click="clicked('s1_1')">
-                    {{ dbData.s1_1 }}
-                </h2>
-                <!-- /cella -->
+                    <!-- cella -->
+                    <h2 class="square s1_1" 
+                        :class="[winnerCombination.includes('s1_1') && winner ? 'active' :  '', dbData.s1_1 == 'x' ? 'colorX' : 'colorO']" 
+                        @click="clicked('s1_1')">
+                        {{ dbData.s1_1 }}
+                    </h2>
+                    <!-- /cella -->
 
-                <!-- cella -->
-                <h2 class="square s1_2" 
-                    :class="[winnerCombination.includes('s1_2') && winner ? 'active' :  '', dbData.s1_2 == 'x' ? 'colorX' : 'colorO' ]"
-                    @click="clicked('s1_2')">
-                    {{ dbData.s1_2 }}
-                </h2>
-                <!-- /cella -->
+                    <!-- cella -->
+                    <h2 class="square s1_2" 
+                        :class="[winnerCombination.includes('s1_2') && winner ? 'active' :  '', dbData.s1_2 == 'x' ? 'colorX' : 'colorO' ]"
+                        @click="clicked('s1_2')">
+                        {{ dbData.s1_2 }}
+                    </h2>
+                    <!-- /cella -->
 
-                <!-- cella -->
-                <h2 class="square s1_3" 
-                    :class="[winnerCombination.includes('s1_3') && winner ? 'active' :  '', dbData.s1_3 == 'x' ? 'colorX' : 'colorO' ]" 
-                    @click="clicked('s1_3')">
-                    {{ dbData.s1_3 }}
-                </h2>
-                <!-- /cella -->
+                    <!-- cella -->
+                    <h2 class="square s1_3" 
+                        :class="[winnerCombination.includes('s1_3') && winner ? 'active' :  '', dbData.s1_3 == 'x' ? 'colorX' : 'colorO' ]" 
+                        @click="clicked('s1_3')">
+                        {{ dbData.s1_3 }}
+                    </h2>
+                    <!-- /cella -->
 
+                </div>
+                <!-- /row 1 -->
+
+                <!-- row 2-->
+                <div class="row">
+
+                    <!-- cella -->
+                    <h2 class="square s2_1" 
+                        :class="[winnerCombination.includes('s2_1') && winner ? 'active' :  '', dbData.s2_1 == 'x' ? 'colorX' : 'colorO' ]" 
+                        @click="clicked('s2_1')">
+                        {{ dbData.s2_1 }}
+                    </h2>    
+                    <!-- /cella -->
+                    
+                    <!-- cella -->
+                    <h2 class="square s2_2" 
+                        :class="[winnerCombination.includes('s2_2') && winner ? 'active' :  '', dbData.s2_2 == 'x' ? 'colorX' : 'colorO' ]" 
+                        @click="clicked('s2_2')">
+                        {{ dbData.s2_2 }}
+                    </h2>
+                    <!-- /cella -->
+                    
+                    <!-- cella -->
+                    <h2 class="square s2_3" 
+                        :class="[winnerCombination.includes('s2_3') && winner ? 'active' :  '', dbData.s2_3 == 'x' ? 'colorX' : 'colorO' ]" 
+                        @click="clicked('s2_3')">
+                        {{ dbData.s2_3 }}
+                    </h2>
+                    <!-- /cella -->
+
+                </div>
+                <!-- /row 2-->
+
+                <!-- row 3-->
+                <div class="row">
+
+                    <!-- cella -->
+                    <h2 class="square s3_1" 
+                        :class="[winnerCombination.includes('s3_1') && winner ? 'active' :  '', dbData.s3_1 == 'x' ? 'colorX' : 'colorO' ]" 
+                        @click="clicked('s3_1')">
+                        {{ dbData.s3_1 }}
+                    </h2>
+                    <!-- /cella -->
+
+                    <!-- cella -->
+                    <h2 class="square s3_2" 
+                        :class="[winnerCombination.includes('s3_2') && winner ? 'active' :  '', dbData.s3_2 == 'x' ? 'colorX' : 'colorO' ]" 
+                        @click="clicked('s3_2')">
+                        {{ dbData.s3_2 }}
+                    </h2>
+                    <!-- /cella -->
+
+                    <!-- cella -->
+                    <h2 class="square s3_3" 
+                        :class="[winnerCombination.includes('s3_3') && winner ? 'active' :  '', dbData.s3_3 == 'x' ? 'colorX' : 'colorO' ]" 
+                        @click="clicked('s3_3')">
+                        {{ dbData.s3_3 }}
+                    </h2>
+                    <!-- /cella -->
+
+                </div>
+                <!-- /row 3-->
             </div>
-            <!-- /row 1 -->
-
-            <!-- row 2-->
-            <div class="row">
-
-                <!-- cella -->
-                <h2 class="square s2_1" 
-                    :class="[winnerCombination.includes('s2_1') && winner ? 'active' :  '', dbData.s2_1 == 'x' ? 'colorX' : 'colorO' ]" 
-                    @click="clicked('s2_1')">
-                    {{ dbData.s2_1 }}
-                </h2>    
-                <!-- /cella -->
-                
-                <!-- cella -->
-                <h2 class="square s2_2" 
-                    :class="[winnerCombination.includes('s2_2') && winner ? 'active' :  '', dbData.s2_2 == 'x' ? 'colorX' : 'colorO' ]" 
-                    @click="clicked('s2_2')">
-                    {{ dbData.s2_2 }}
-                </h2>
-                <!-- /cella -->
-                
-                <!-- cella -->
-                <h2 class="square s2_3" 
-                    :class="[winnerCombination.includes('s2_3') && winner ? 'active' :  '', dbData.s2_3 == 'x' ? 'colorX' : 'colorO' ]" 
-                    @click="clicked('s2_3')">
-                    {{ dbData.s2_3 }}
-                </h2>
-                <!-- /cella -->
-
-            </div>
-            <!-- /row 2-->
-
-
-            <!-- row 3-->
-            <div class="row">
-
-                <!-- cella -->
-                <h2 class="square s3_1" 
-                    :class="[winnerCombination.includes('s3_1') && winner ? 'active' :  '', dbData.s3_1 == 'x' ? 'colorX' : 'colorO' ]" 
-                    @click="clicked('s3_1')">
-                    {{ dbData.s3_1 }}
-                </h2>
-                <!-- /cella -->
-
-                <!-- cella -->
-                <h2 class="square s3_2" 
-                    :class="[winnerCombination.includes('s3_2') && winner ? 'active' :  '', dbData.s3_2 == 'x' ? 'colorX' : 'colorO' ]" 
-                    @click="clicked('s3_2')">
-                    {{ dbData.s3_2 }}
-                </h2>
-                <!-- /cella -->
-
-                <!-- cella -->
-                <h2 class="square s3_3" 
-                    :class="[winnerCombination.includes('s3_3') && winner ? 'active' :  '', dbData.s3_3 == 'x' ? 'colorX' : 'colorO' ]" 
-                    @click="clicked('s3_3')">
-                    {{ dbData.s3_3 }}
-                </h2>
-                <!-- /cella -->
-
-            </div>
-            <!-- /row 3-->
 
 
             <div class="w-100">

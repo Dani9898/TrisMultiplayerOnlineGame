@@ -7,7 +7,7 @@
 
 3. Gestire il pareggio				--DONE-- 		
 
-4. Dovremmo gestire le celle di vittoria, quindi illuminarle.
+4. Dovremmo gestire le celle di vittoria, quindi illuminarle. --DONE--
 
 5. Frasi descrittive
 
@@ -115,7 +115,6 @@ var app = new Vue(
 
             // call axios che torna i dati dal db(coordinate, winner, last user)
             getData(){
-                console.log('winner', this.winner);
                 axios.get(`server.php?stanza=${this.stanza}`)
                     .then(r => {
                         // salvo i dati
@@ -132,6 +131,13 @@ var app = new Vue(
                             // valorizzo winner per reset classi
                             this.winner = false;
                         }
+
+                        // console.log('winnerData:', r.data.winnerData);
+                        // if (r.data.winnerData) {
+                        //     // valorizzo ceilW con l'array contente le posizioni delle celle vincenti
+                        //     this.ceilW = r.data.winnerData.ceilWin;
+    
+                        // }
                     })
                     .catch(e => console.error(e));
             },

@@ -47,7 +47,7 @@ var app = new Vue(
             winner: false,
 
             // array dati sul vincitore
-            ceilW: [],
+            winnerCombination: [],
         },
 
         mounted(){
@@ -67,7 +67,7 @@ var app = new Vue(
         methods: {
             // funzione che gestisce il click (asincrona)
             async clicked(coordinata) {
-                
+
                 // controllo primo click
                 if (this.dbData.lastUser == undefined) {
                     this.click = false
@@ -78,7 +78,7 @@ var app = new Vue(
                 if (!this.storeClick.includes(coordinata) 
                     && this.click === false 
                     && this.winner == false) {
-                        
+
                         // pusho la coordinata nello storeClick
                         this.storeClick.push(coordinata)
                         // chiamata axios 
@@ -97,19 +97,19 @@ var app = new Vue(
                         // click e winner diventano'true'
                         this.click = true;
                         this.winner = true;
-                        // valorizzo ceilW con l'array contente le posizioni delle celle vincenti
-                        this.ceilW = res.data.winnerData.ceilWin;
+                        // valorizzo winnerCombination con l'array contente le posizioni delle celle vincenti
+                        this.winnerCombination = res.data.winnerData.ceilWin;
 
                     }
 
-                    
+
                     // controllo pareggio
                     // se nClick(count dei click) = 9 e winner e' falso
                     if (this.dbData.nclick == 9 && !this.winner) {
                         alert('Pareggio'); 
                         this.reset();
                     }
-                    
+
                 }
             },
 
@@ -127,7 +127,7 @@ var app = new Vue(
                             // svuoto i dati della partita
                             this.dbData = {};
                             this.storeClick = [];
-                            
+
                             // valorizzo winner per reset classi
                             this.winner = false;
                         }
@@ -135,8 +135,8 @@ var app = new Vue(
                         // controllo win
                         if (r.data.winnerData.ceilWin !== undefined) {
                             this.winner = true;
-                            // valorizzo ceilW con l'array contente le posizioni delle celle vincenti
-                            this.ceilW = r.data.winnerData.ceilWin; 
+                            // valorizzo winnerCombination con l'array contente le posizioni delle celle vincenti
+                            this.winnerCombination = r.data.winnerData.ceilWin;
                         }
 
                     })

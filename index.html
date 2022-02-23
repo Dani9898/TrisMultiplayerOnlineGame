@@ -65,7 +65,7 @@
 
                 <!-- cella -->
                 <div class="square s1_1" 
-                    :class="ceilW.includes('s1_1') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s1_1') && winner? 'active' :  ''" 
                     @click="clicked('s1_1')">
                     {{ dbData.s1_1 }}
                 </div>
@@ -73,7 +73,7 @@
 
                 <!-- cella -->
                 <div class="square s1_2" 
-                    :class="ceilW.includes('s1_2') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s1_2') && winner? 'active' :  ''" 
                     @click="clicked('s1_2')">
                     {{ dbData.s1_2 }}
                 </div>
@@ -81,7 +81,7 @@
 
                 <!-- cella -->
                 <div class="square s1_3" 
-                    :class="ceilW.includes('s1_3') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s1_3') && winner? 'active' :  ''" 
                     @click="clicked('s1_3')">
                     {{ dbData.s1_3 }}
                 </div>
@@ -95,7 +95,7 @@
 
                 <!-- cella -->
                 <div class="square s2_1" 
-                    :class="ceilW.includes('s2_1') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s2_1') && winner? 'active' :  ''" 
                     @click="clicked('s2_1')">
                     {{ dbData.s2_1 }}
                 </div>    
@@ -103,7 +103,7 @@
                 
                 <!-- cella -->
                 <div class="square s2_2" 
-                    :class="ceilW.includes('s2_2') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s2_2') && winner? 'active' :  ''" 
                     @click="clicked('s2_2')">
                     {{ dbData.s2_2 }}
                 </div>
@@ -111,7 +111,7 @@
                 
                 <!-- cella -->
                 <div class="square s2_3" 
-                    :class="ceilW.includes('s2_3') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s2_3') && winner? 'active' :  ''" 
                     @click="clicked('s2_3')">
                     {{ dbData.s2_3 }}
                 </div>
@@ -126,7 +126,7 @@
 
                 <!-- cella -->
                 <div class="square s3_1" 
-                    :class="ceilW.includes('s3_1') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s3_1') && winner? 'active' :  ''" 
                     @click="clicked('s3_1')">
                     {{ dbData.s3_1 }}
                 </div>
@@ -134,7 +134,7 @@
 
                 <!-- cella -->
                 <div class="square s3_2" 
-                    :class="ceilW.includes('s3_2') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s3_2') && winner? 'active' :  ''" 
                     @click="clicked('s3_2')">
                     {{ dbData.s3_2 }}
                 </div>
@@ -142,7 +142,7 @@
 
                 <!-- cella -->
                 <div class="square s3_3" 
-                    :class="ceilW.includes('s3_3') && winner? 'active' :  ''" 
+                    :class="winnerCombination.includes('s3_3') && winner? 'active' :  ''" 
                     @click="clicked('s3_3')">
                     {{ dbData.s3_3 }}
                 </div>

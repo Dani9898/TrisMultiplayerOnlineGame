@@ -1,5 +1,7 @@
 :root {
     --border: 1px solid rgba(0, 0, 0, 0.3);
+    --mainColorX: #376ba0;
+    --mainColorO: #ffd154;
 }
 
 * {

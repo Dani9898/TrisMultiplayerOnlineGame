@@ -12,6 +12,9 @@
     text-align: center;
     margin-bottom: 20px;
 }
+img {
+    max-width: 100%;
+}
 /* form */
 #cont-form {
     text-align: center;
@@ -21,20 +24,11 @@
 #container {
     width: 450px;
     height: 450px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
+    margin: auto;
 }
 
 .row {
-    
     display: flex;
-    
-
 }
 
 .square {

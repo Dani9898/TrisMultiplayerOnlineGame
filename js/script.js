@@ -1,15 +1,10 @@
 
 
 /*
-1. Una volta che siamo entrati, far scomparire il form. 		--DONE--
+1. BUGFIX: combinazione vincente non combacia con quella colorata
+2. BUGFIX: tasto reset compare solo a partita finita(pareggio o vittoria)
+3. BUGFIX: puo vincere solo x
 
-2. Il reset								--DONE--
-
-3. Gestire il pareggio				--DONE-- 		
-
-4. Dovremmo gestire le celle di vittoria, quindi illuminarle. --DONE--
-
-5. Frasi descrittive --Done--
 
 6. Che i tasti sarebbero "crea nuova stanza" o "unisciti"
 Crea stanza -> 
@@ -42,7 +37,7 @@ var app = new Vue(
             playerInput:'',
             stanzaInput:'',
             nomeInput: '',
-
+            join: false,
             // gestisce il vincitore
             winner: false,
 
@@ -59,6 +54,8 @@ var app = new Vue(
             const urlParams = new URLSearchParams(queryString);
             // valore stanza
             this.stanza = urlParams.get('stanza');
+            this.join = urlParams.get('join') ? true : false;
+
             // valore player
             this.player = urlParams.get('player');
             setInterval(this.getData, 1000);
@@ -69,13 +66,14 @@ var app = new Vue(
             async clicked(coordinata) {
 
                 // controllo primo click
-                if (this.dbData.lastUser == undefined) {
+                if (this.dbData.lastUser != this.player) {
                     this.click = false
                 }
 
                 // controllo generico click
                 // se storeClick contiene la cella cliccata && click e' falso && winner e' falso
-                if (!this.storeClick.includes(coordinata) 
+                if (!this.storeClick.includes(coordinata)
+                    && !this.dbData[coordinata]
                     && this.click === false 
                     && this.winner == false) {
 
@@ -115,7 +113,7 @@ var app = new Vue(
 
             // call axios che torna i dati dal db(coordinate, winner, last user)
             getData(){
-                axios.get(`server.php?stanza=${this.stanza}`)
+                axios.get(`server.php?stanza=${this.stanza}&player=${this.player}&join=${this.join}`)
                     .then(r => {
                         // salvo i dati
                         this.dbData = r.data;
@@ -132,6 +130,9 @@ var app = new Vue(
                             this.winner = false;
                         }
 
+                        if (r.data.player) {
+                            this.player = r.data.player;
+                        }
                         // controllo win
                         if (r.data.winnerData.ceilWin !== undefined) {
                             this.winner = true;

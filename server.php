@@ -81,6 +81,17 @@ if (isset($_GET['stanza'])
 }
 
 if (isset($_GET['stanza'])) {
+    if (!$json->nclick && strlen($_GET['player']) == 1 && !$json->lastUser) {
+      $json->lastUser = $_GET['player'];
+      $json = json_encode($json, JSON_PRETTY_PRINT);
+      file_put_contents($file, $json);
+      $json = json_decode($json);
+    }
+
+    if (!$json->nclick && $_GET['player'] == 'null') {
+      $json->player = $json->lastUser == 'x' ? 'o' : 'x';
+    }
+
     echo json_encode($json, JSON_PRETTY_PRINT); die;
 }
 

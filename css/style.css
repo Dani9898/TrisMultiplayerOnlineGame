@@ -10,9 +10,15 @@
     box-sizing: border-box;
 }
 
+.colorX {
+    color: var(--mainColorX);
+}
+.colorO {
+    color: var(--mainColorO);
+}
+
 #cont-img {
     text-align: center;
-    margin-bottom: 20px;
 }
 img {
     max-width: 100%;

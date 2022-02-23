@@ -132,12 +132,13 @@ var app = new Vue(
                             this.winner = false;
                         }
 
-                        // console.log('winnerData:', r.data.winnerData);
-                        // if (r.data.winnerData) {
-                        //     // valorizzo ceilW con l'array contente le posizioni delle celle vincenti
-                        //     this.ceilW = r.data.winnerData.ceilWin;
-    
-                        // }
+                        // controllo win
+                        if (r.data.winnerData.ceilWin !== undefined) {
+                            this.winner = true;
+                            // valorizzo ceilW con l'array contente le posizioni delle celle vincenti
+                            this.ceilW = r.data.winnerData.ceilWin; 
+                        }
+
                     })
                     .catch(e => console.error(e));
             },

@@ -151,7 +151,7 @@
             </div>
 
 
-            <div class="w-100">
+            <div class="w-100" :class="!winner ? 'd-none' : ''">
                 <button class="d-block btn btn-primary m-auto mt-2" @click="reset">RESET</button>
             </div>
         </div>

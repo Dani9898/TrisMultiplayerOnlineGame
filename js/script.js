@@ -1,7 +1,6 @@
 
 
 /*
-1. BUGFIX: combinazione vincente non combacia con quella colorata
 2. BUGFIX: tasto reset compare solo a partita finita(pareggio o vittoria)
 3. BUGFIX: puo vincere solo x
 
@@ -100,7 +99,6 @@ var app = new Vue(
 
                     }
 
-
                     // controllo pareggio
                     // se nClick(count dei click) = 9 e winner e' falso
                     if (this.dbData.nclick == 9 && !this.winner) {
@@ -141,7 +139,7 @@ var app = new Vue(
                         }
 
                     })
-                    .catch(e => console.error(e));
+                .catch(e => console.error(e));
             },
 
             // svuota gli input

@@ -106,10 +106,10 @@ function asWinner($json, $player) {
     ];
   }
 
-  if ($json->s1_2 == $player && $json->s2_2 == $player && $json->s3_2 == $player) {
+  if ($json->s2_1 == $player && $json->s2_2 == $player && $json->s2_3 == $player) {
     return (Object)[
       'winner' => true,
-      'ceilWin' => ['s1_2','s2_2','s2_3']
+      'ceilWin' => ['s2_1','s2_2','s2_3']
     ];
   }
 
